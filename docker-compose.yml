@@ -1,0 +1,43 @@
+services:
+  xray:
+    image: ghcr.io/xtls/xray-core:latest
+    container_name: xray
+    restart: always
+    network_mode: host
+    user: root
+    volumes:
+      - ./configs/xray/config.json:/etc/xray/config.json:ro
+    command: run -config /etc/xray/config.json
+
+  hysteria:
+    image: tobyxdd/hysteria:latest
+    container_name: hysteria
+    restart: always
+    network_mode: host
+    volumes:
+      - ./configs/hysteria:/etc/hysteria:ro
+    command: server -c /etc/hysteria/config.yaml
+
+  dante:
+    build:
+      context: ./dante
+      args:
+        SOCKS_USER: ${SOCKS_USER}
+        SOCKS_PASS: ${SOCKS_PASS}
+    container_name: dante
+    restart: always
+    network_mode: host
+    volumes:
+      - ./configs/dante/sockd.conf:/etc/dante/sockd.conf:ro
+
+  mtg1:
+    image: nineseconds/mtg:latest
+    network_mode: host
+    command: simple-run 0.0.0.0:8888 ${MTG_SECRET_8888}
+    restart: always
+
+  mtg2:
+    image: nineseconds/mtg:latest
+    network_mode: host
+    command: simple-run 0.0.0.0:2095 ${MTG_SECRET_2095}
+    restart: always
