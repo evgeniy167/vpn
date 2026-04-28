@@ -1,0 +1,6 @@
+.env
+output/
+*.log
+configs/xray/config.json
+configs/hysteria/config.yaml
+
