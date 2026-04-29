@@ -79,8 +79,8 @@ nano /opt/proxy-stack/.env
 Пример:
 
 ```
-BOT_TOKEN=ТВОЙ_ТОКЕН
-CHAT_ID=ТВОЙ_CHAT_ID
+TELEGRAM_BOT_TOKEN=ТВОЙ_ТОКЕН
+TELEGRAM_CHAT_ID=ТВОЙ_CHAT_ID
 ```
 
 ---
