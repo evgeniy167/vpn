@@ -101,6 +101,7 @@ client pass {
 
 socks pass {
     from: 0.0.0.0/0 to: 0.0.0.0/0
+    socksmethod: username
 }
 EOL
 
@@ -120,6 +121,7 @@ SOCKS_PASS=$SOCKS_PASS
 MTG_SECRET_8888=$MTG_SECRET_8888
 MTG_SECRET_2095=$MTG_SECRET_2095
 EOL
+chmod 600 .env
 
 VLESS_LINK="vless://$UUID@$SERVER_IP:443?security=reality&sni=www.cloudflare.com&fp=chrome&pbk=$PUBLIC_KEY&sid=$SHORT_ID&type=tcp&flow=xtls-rprx-vision#VLESS"
 HY_LINK="hysteria2://$HY_PASSWORD@$SERVER_IP:2053/?insecure=1&sni=news.ycombinator.com#HY2"
